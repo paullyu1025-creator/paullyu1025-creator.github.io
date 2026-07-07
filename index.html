@@ -44,7 +44,7 @@
       grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
       gap: 36px;
       align-items: center;
-      padding: 56px 0 42px;
+      padding: 42px 0;
     }
 
     .hero h1 {
@@ -98,7 +98,7 @@
       display: flex;
       gap: 18px;
       padding: 14px 0;
-      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
       overflow-x: auto;
     }
 
@@ -166,6 +166,13 @@
     .card p {
       margin: 0 0 12px;
       color: var(--muted);
+    }
+
+    .section-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
     }
 
     .meta {
@@ -248,7 +255,7 @@
       }
 
       .hero {
-        padding-top: 38px;
+        padding-top: 28px;
       }
 
       .wrap {
@@ -260,6 +267,12 @@
 <body>
   <header>
     <div class="wrap">
+      <nav aria-label="Page navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
       <div class="hero">
         <div>
           <h1>Paul Lyu</h1>
@@ -279,24 +292,20 @@
           <img src="assets/gsef-poster.png" alt="AI-powered autonomous pacing bot project poster preview">
         </div>
       </div>
-      <nav aria-label="Page navigation">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
     </div>
   </header>
 
   <main class="wrap">
     <section id="about">
       <h2>About</h2>
-      <p class="lede">
-        I am a student at Darlington School interested in building practical systems
-        that combine software, hardware, and athletic performance. My recent work
-        centers on AI-assisted running tools, autonomous pacing, gait analysis,
-        and machine learning for audio and vision.
-      </p>
+      <div class="section-card">
+        <p class="lede">
+          I am a student at Darlington School interested in building practical systems
+          that combine software, hardware, and athletic performance. My recent work
+          centers on AI-assisted running tools, autonomous pacing, gait analysis,
+          and machine learning for audio and vision.
+        </p>
+      </div>
     </section>
 
     <section id="projects">
@@ -344,19 +353,32 @@
         <article class="card">
           <h3>PACE</h3>
           <p>
-            Developing a mobile running-coach app with an Expo React Native frontend
-            and an Express backend. The app stores runner profiles, morning check-ins,
-            injury records, training plans, subscription status, and coach-chat history.
+            Building a running-focused mobile coaching app with an Expo React Native
+            frontend and an Express backend. PACE turns daily check-ins into readiness
+            scores, training notes, recent warning flags, recovery guidance, and a
+            logged plan for the day.
           </p>
           <p>
-            Current work includes account controls, daily usage limits, safety boundaries
-            for coaching responses, deployment prep, and production billing scaffolding.
+            The current app includes a coaching-agent system with a Head Coach,
+            Training Coach, Recovery Coach, and Injury Manager. The backend stores
+            runner profiles, morning check-ins, coach chats, injury records, training
+            plans, subscription status, and daily usage events in SQLite for local
+            development.
+          </p>
+          <p>
+            Current public-launch work includes production environment templates,
+            account controls, email verification, password reset, data export, delete
+            account, rate limits, medical-safety boundaries, deployment files, EAS build
+            setup, RevenueCat billing scaffolding, and draft privacy, terms, and safety
+            documents.
           </p>
           <div class="meta">
             <span class="pill">React Native</span>
             <span class="pill">Express</span>
             <span class="pill">SQLite</span>
             <span class="pill">OpenAI API</span>
+            <span class="pill">RevenueCat Prep</span>
+            <span class="pill">Public Launch Prep</span>
           </div>
         </article>
 
@@ -422,7 +444,8 @@
         <article class="card">
           <h3>Technical Skills</h3>
           <ul>
-            <li>Python, TypeScript, React Native, Express</li>
+            <li>Programming languages: Python, Java, C++, Javascript</li>
+            <li>TypeScript, React Native, Express</li>
             <li>OpenCV, MediaPipe, YOLO-style segmentation</li>
             <li>Arduino, embedded control, serial communication</li>
             <li>Machine learning workflows and Kaggle submissions</li>
@@ -434,10 +457,13 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p class="lede">
-        Email: <a href="mailto:05wen0505@gmail.com">05wen0505@gmail.com</a><br>
-        GitHub: <a href="https://github.com/paullyu1025-creator">paullyu1025-creator</a>
-      </p>
+      <div class="section-card">
+        <p class="lede">
+          Feel free to contact me.<br>
+          Email: <a href="mailto:05wen0505@gmail.com">05wen0505@gmail.com</a><br>
+          GitHub: <a href="https://github.com/paullyu1025-creator">paullyu1025-creator</a>
+        </p>
+      </div>
     </section>
   </main>
 

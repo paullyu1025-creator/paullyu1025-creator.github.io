@@ -1,26 +1,450 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Paul Yu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paul Lyu</title>
+  <style>
+    :root {
+      --ink: #1d252f;
+      --muted: #5e6875;
+      --line: #d9e1e8;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --green: #2f7d67;
+      --blue: #2d5d93;
+      --gold: #b87918;
+      --red: #b54a38;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 36px;
+      align-items: center;
+      padding: 56px 0 42px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: #f9fbfc;
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: #364250;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hero-visual {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #eef3f7;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    main {
+      padding: 34px 0 64px;
+    }
+
+    section {
+      margin-bottom: 42px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .project-image {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      display: block;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      color: #24313e;
+      background: #eef4f1;
+      border: 1px solid #cfe0d9;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      background: #ffffff;
+      border-left: 4px solid var(--green);
+      border-radius: 6px;
+      padding: 12px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 7px 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 40px;
+      color: var(--muted);
+      background: #ffffff;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    @media (max-width: 820px) {
+      .hero,
+      .card.featured,
+      .two-col,
+      .grid,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 38px;
+      }
+
+      .wrap {
+        width: min(100% - 28px, 1080px);
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Paul Yu</h1>
+  <header>
+    <div class="wrap">
+      <div class="hero">
+        <div>
+          <h1>Paul Lyu</h1>
+          <p>
+            Student builder focused on running technology, embedded AI, computer vision,
+            and data-driven sports tools.
+          </p>
+          <div class="tags" aria-label="Focus areas">
+            <span class="tag">Embedded AI</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Sports Technology</span>
+            <span class="tag">Data Science</span>
+            <span class="tag">USACO Gold</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="assets/gsef-poster.png" alt="AI-powered autonomous pacing bot project poster preview">
+        </div>
+      </div>
+      <nav aria-label="Page navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <h2>About Me / Academic Background</h2>
+  <main class="wrap">
+    <section id="about">
+      <h2>About</h2>
+      <p class="lede">
+        I am a student at Darlington School interested in building practical systems
+        that combine software, hardware, and athletic performance. My recent work
+        centers on AI-assisted running tools, autonomous pacing, gait analysis,
+        and machine learning for audio and vision.
+      </p>
+    </section>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>PACE</li>
-    <li>GSEF Pacing Bot</li>
-    <li>Kaggle BirdCLEF</li>
-    <li>Running Fatigue Project</li>
-  </ul>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card featured">
+          <div>
+            <h3>AI-Powered Autonomous Pacing Bot</h3>
+            <p>
+              Built an autonomous pacing robot designed to give runners a visual pace
+              reference while also analyzing running form in real time. The system uses
+              a three-wheel chassis, dual cameras, YOLO-style trackline segmentation,
+              pose estimation, PID control, an RK3588 embedded platform, and Arduino
+              Nano microcontrollers for motor and steering control.
+            </p>
+            <div class="metrics">
+              <div class="metric">
+                <strong>92.67%</strong>
+                <span>trackline segmentation accuracy</span>
+              </div>
+              <div class="metric">
+                <strong>1.96%</strong>
+                <span>average speed error</span>
+              </div>
+              <div class="metric">
+                <strong>88.9%</strong>
+                <span>running form agreement</span>
+              </div>
+              <div class="metric">
+                <strong>40 FPS</strong>
+                <span>trackline pipeline runtime</span>
+              </div>
+            </div>
+            <div class="meta">
+              <span class="pill">YOLO Segmentation</span>
+              <span class="pill">MediaPipe Pose</span>
+              <span class="pill">RK3588 NPU</span>
+              <span class="pill">Arduino</span>
+              <span class="pill">PID Control</span>
+            </div>
+          </div>
+          <img class="project-image" src="assets/gsef-poster.png" alt="GSEF pacing bot poster preview">
+        </article>
 
-  <h2>Research</h2>
+        <article class="card">
+          <h3>PACE</h3>
+          <p>
+            Developing a mobile running-coach app with an Expo React Native frontend
+            and an Express backend. The app stores runner profiles, morning check-ins,
+            injury records, training plans, subscription status, and coach-chat history.
+          </p>
+          <p>
+            Current work includes account controls, daily usage limits, safety boundaries
+            for coaching responses, deployment prep, and production billing scaffolding.
+          </p>
+          <div class="meta">
+            <span class="pill">React Native</span>
+            <span class="pill">Express</span>
+            <span class="pill">SQLite</span>
+            <span class="pill">OpenAI API</span>
+          </div>
+        </article>
 
-  <h2>Awards / Skills</h2>
-  <p>USACO Gold Level</p>
+        <article class="card">
+          <h3>Kaggle BirdCLEF</h3>
+          <p>
+            Earned a Silver Medal in BirdCLEF+ 2026, placing 95th out of 4094 teams.
+            The project focused on bird-sound classification using a packaged submission
+            workflow with shared Perch features, SED outputs, retrained branch artifacts,
+            sequence modeling, and rank blending.
+          </p>
+          <p>
+            The release package includes upload-ready Kaggle dataset assets, a submission
+            notebook, model artifacts, and documentation for reproducing the final
+            submission pipeline.
+          </p>
+          <img class="project-image" src="assets/birdclef-silver.png" alt="Kaggle BirdCLEF+ 2026 silver medal certificate">
+          <div class="meta">
+            <span class="pill">Silver Medal</span>
+            <span class="pill">Audio ML</span>
+            <span class="pill">Kaggle</span>
+            <span class="pill">Perch Features</span>
+            <span class="pill">Ensembling</span>
+          </div>
+        </article>
 
-  <h2>Contact</h2>
+        <article class="card">
+          <h3>Running Fatigue Detection</h3>
+          <p>
+            Project under development through Pioneer. I am exploring whether wearable
+            sensors, including accelerometers and gyroscopes, can detect fatigue-related
+            gait changes by comparing a runner's motion against their own low-fatigue
+            baseline.
+          </p>
+          <p>
+            Planned features include cadence, trunk movement, stride length, body symmetry,
+            sensor placement, data filtering, and validation using public gait datasets
+            plus self-collected running data.
+          </p>
+          <div class="meta">
+            <span class="pill">Under Development</span>
+            <span class="pill">Wearable Sensors</span>
+            <span class="pill">IMU Data</span>
+            <span class="pill">Gait Analysis</span>
+            <span class="pill">Running Fatigue</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Academic Information and Skills</h2>
+      <div class="two-col">
+        <article class="card">
+          <h3>Academic Interests</h3>
+          <ul>
+            <li>Computer vision for sports performance analysis</li>
+            <li>Embedded AI and autonomous robotic systems</li>
+            <li>Machine learning for audio, gait, and sensor data</li>
+            <li>Running biomechanics and injury-prevention technology</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Technical Skills</h3>
+          <ul>
+            <li>Python, TypeScript, React Native, Express</li>
+            <li>OpenCV, MediaPipe, YOLO-style segmentation</li>
+            <li>Arduino, embedded control, serial communication</li>
+            <li>Machine learning workflows and Kaggle submissions</li>
+            <li>USACO Gold level programming</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="lede">
+        Email: <a href="mailto:05wen0505@gmail.com">05wen0505@gmail.com</a><br>
+        GitHub: <a href="https://github.com/paullyu1025-creator">paullyu1025-creator</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Paul Lyu</span>
+    </div>
+  </footer>
 </body>
 </html>

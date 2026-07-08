@@ -4,695 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paul Lyu</title>
-  <style>
-    :root {
-      --ink: #17202a;
-      --muted: #657282;
-      --quiet: #8a95a3;
-      --line: #d8e0e7;
-      --bg: #eef2f4;
-      --panel: #ffffff;
-      --panel-soft: #f7f9fa;
-      --green: #2f7d67;
-      --blue: #315f8f;
-      --gold: #b87918;
-      --red: #b54a38;
-      --shadow: 0 16px 40px rgba(23, 32, 42, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: var(--bg);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--blue);
-    }
-
-    .wrap {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      background:
-        linear-gradient(180deg, #ffffff 0%, #ffffff 72%, #eef2f4 100%);
-      border-bottom: 1px solid var(--line);
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 22px;
-      padding: 16px 0;
-      background: rgba(255, 255, 255, 0.94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-name {
-      color: var(--ink);
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 0;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      overflow-x: auto;
-    }
-
-    .nav-links a {
-      color: var(--ink);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 44px;
-      align-items: center;
-      padding: 58px 0 64px;
-    }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      margin: 0 0 16px;
-      font-size: clamp(46px, 7vw, 78px);
-      line-height: 0.95;
-      letter-spacing: 0;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 710px;
-      color: var(--muted);
-      font-size: 19px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      color: var(--ink);
-      font-size: 14px;
-      font-weight: 900;
-      text-decoration: none;
-    }
-
-    .button.primary {
-      background: var(--ink);
-      border-color: var(--ink);
-      color: #ffffff;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 24px;
-    }
-
-    .tag,
-    .pill {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: #2d3845;
-      background: #f7fafb;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .tag {
-      padding: 7px 10px;
-    }
-
-    .pill {
-      padding: 5px 8px;
-    }
-
-    .hero-visual {
-      position: relative;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #ffffff;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 14px 14px auto auto;
-      width: 44%;
-      height: 8px;
-      background: var(--green);
-      border-radius: 99px;
-      opacity: 0.85;
-    }
-
-    .hero-visual img,
-    .project-image {
-      display: block;
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #f4f7f8;
-    }
-
-    .hero-visual img {
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    .visual-caption {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 12px 4px 2px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    main {
-      padding: 42px 0 70px;
-    }
-
-    section {
-      margin-bottom: 54px;
-      scroll-margin-top: 88px;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      gap: 24px;
-      align-items: end;
-      margin-bottom: 18px;
-    }
-
-    .section-number {
-      color: var(--quiet);
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: 29px;
-      line-height: 1.15;
-      letter-spacing: 0;
-    }
-
-    .section-summary {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .section-card,
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      box-shadow: 0 8px 28px rgba(23, 32, 42, 0.05);
-    }
-
-    .section-card {
-      padding: 22px;
-      border-left: 5px solid var(--green);
-    }
-
-    .lede {
-      max-width: 880px;
-      color: var(--muted);
-      font-size: 17px;
-      margin: 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      position: relative;
-      padding: 22px;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 5px;
-      background: var(--blue);
-    }
-
-    .card.accent-green::before {
-      background: var(--green);
-    }
-
-    .card.accent-gold::before {
-      background: var(--gold);
-    }
-
-    .card.accent-red::before {
-      background: var(--red);
-    }
-
-    .card.featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
-      gap: 26px;
-      align-items: start;
-      padding: 26px;
-    }
-
-    .project-kicker {
-      margin: 0 0 7px;
-      color: var(--quiet);
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 23px;
-      line-height: 1.18;
-    }
-
-    .card p {
-      margin: 0 0 12px;
-      color: var(--muted);
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 16px;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      margin: 20px 0 4px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--line);
-    }
-
-    .metric {
-      min-height: 96px;
-      background: var(--panel-soft);
-      padding: 14px;
-    }
-
-    .metric strong {
-      display: block;
-      color: var(--ink);
-      font-size: 22px;
-      line-height: 1.1;
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      margin-top: 6px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    li {
-      margin: 7px 0;
-      color: var(--muted);
-    }
-
-    .contact-links {
-      display: grid;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 24px 0 40px;
-      color: var(--muted);
-      background: #ffffff;
-    }
-
-    @media (max-width: 860px) {
-      .hero,
-      .card.featured,
-      .two-col,
-      .grid,
-      .metrics,
-      .section-head {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .hero {
-        padding: 34px 0 42px;
-      }
-
-      .metrics {
-        gap: 1px;
-      }
-
-      .wrap {
-        width: min(100% - 28px, 1120px);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <nav aria-label="Page navigation">
-        <a class="nav-name" href="#top">Paul Lyu</a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-
-      <div class="hero" id="top">
-        <div>
-          <p class="eyebrow">Darlington School | Student Builder</p>
-          <h1>Paul Lyu</h1>
-          <p>
-            I build running technology, embedded AI systems, computer vision tools,
-            and data-driven projects that connect software with athletic performance.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#projects">View Projects</a>
-            <a class="button" href="mailto:05wen0505@gmail.com">Contact Me</a>
-          </div>
-          <div class="tags" aria-label="Focus areas">
-            <span class="tag">Embedded AI</span>
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Sports Technology</span>
-            <span class="tag">Audio ML</span>
-            <span class="tag">USACO Gold</span>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <img src="assets/gsef-poster.png" alt="AI-powered autonomous pacing bot project poster preview">
-          <div class="visual-caption">
-            <span>Featured Project</span>
-            <span>AI-Powered Pacing Bot</span>
-          </div>
-        </div>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="Page navigation">
+      <a class="brand" href="index.html">Paul Lyu</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <section id="about">
-      <div class="section-head">
-        <div>
-          <div class="section-number">01 About</div>
-          <h2>Builder at the intersection of running and engineering.</h2>
+  <main>
+    <section class="hero wrap">
+      <div>
+        <h1>Running technology, AI, and engineering.</h1>
+        <p>Four projects: one fast overview. Click any project for the full build story and repository.</p>
+        <div class="actions">
+          <a class="button" href="#projects">Explore projects</a>
+          <a class="button secondary" href="mailto:05wen0505@gmail.com">Contact</a>
         </div>
-        <p class="section-summary">
-          My work focuses on practical systems: mobile coaching apps, autonomous
-          pacing hardware, gait analysis, and machine learning pipelines.
-        </p>
-      </div>
-      <div class="section-card">
-        <p class="lede">
-          I am a student at Darlington School interested in building practical systems
-          that combine software, hardware, and athletic performance. My recent work
-          centers on AI-assisted running tools, autonomous pacing, gait analysis,
-          and machine learning for audio and vision.
-        </p>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="section-head">
-        <div>
-          <div class="section-number">02 Projects</div>
-          <h2>Selected work.</h2>
+    <section id="projects" class="project-grid wrap" aria-label="Major projects">
+      <a class="project-card dark" href="projects/pacing-bot.html">
+        <div class="card-copy">
+          <p class="card-kicker">Embedded AI robot</p>
+          <h2>AI-Powered Pacing Bot</h2>
+          <p class="card-subtitle">Autonomous track pacing plus real-time running form feedback.</p>
+          <p class="card-meta">YOLO, MediaPipe, RK3588, Arduino</p>
+          <span class="card-link">View project</span>
         </div>
-        <p class="section-summary">
-          These projects show the main directions of my work: embedded AI, software
-          products, competition machine learning, and current research development.
-        </p>
-      </div>
+        <img class="poster" src="assets/gsef-poster.png" alt="Pacing bot poster preview">
+      </a>
 
-      <div class="grid">
-        <article class="card featured accent-green">
-          <div>
-            <p class="project-kicker">Embedded AI | Robotics | Running Form</p>
-            <h3>AI-Powered Autonomous Pacing Bot</h3>
-            <p>
-              Built an autonomous pacing robot designed to give runners a visual pace
-              reference while also analyzing running form in real time. The system uses
-              a three-wheel chassis, dual cameras, YOLO-style trackline segmentation,
-              pose estimation, PID control, an RK3588 embedded platform, and Arduino
-              Nano microcontrollers for motor and steering control.
-            </p>
-            <div class="metrics">
-              <div class="metric">
-                <strong>92.67%</strong>
-                <span>trackline segmentation accuracy</span>
-              </div>
-              <div class="metric">
-                <strong>1.96%</strong>
-                <span>average speed error</span>
-              </div>
-              <div class="metric">
-                <strong>88.9%</strong>
-                <span>running form agreement</span>
-              </div>
-              <div class="metric">
-                <strong>40 FPS</strong>
-                <span>trackline pipeline runtime</span>
-              </div>
-            </div>
-            <div class="meta">
-              <span class="pill">YOLO Segmentation</span>
-              <span class="pill">MediaPipe Pose</span>
-              <span class="pill">RK3588 NPU</span>
-              <span class="pill">Arduino</span>
-              <span class="pill">PID Control</span>
-            </div>
-          </div>
-          <img class="project-image" src="assets/gsef-poster.png" alt="GSEF pacing bot poster preview">
-        </article>
+      <a class="project-card" href="projects/pace.html">
+        <div class="card-copy">
+          <p class="card-kicker">Mobile coaching app</p>
+          <h2>PACE</h2>
+          <p class="card-subtitle">A running coach app with readiness, AI agents, backend sync, and launch prep.</p>
+          <p class="card-meta">React Native, Express, SQLite, OpenAI API</p>
+          <span class="card-link">View project</span>
+        </div>
+        <img src="assets/pace-runner-hero.png" alt="PACE app running analysis hero">
+      </a>
 
-        <article class="card accent-green">
-          <p class="project-kicker">Mobile App | Backend | Running Coach</p>
-          <h3>PACE</h3>
-          <p>
-            Building a running-focused mobile coaching app with an Expo React Native
-            frontend and an Express backend. PACE turns daily check-ins into readiness
-            scores, training notes, recent warning flags, recovery guidance, and a
-            logged plan for the day.
-          </p>
-          <p>
-            The current app includes a coaching-agent system with a Head Coach,
-            Training Coach, Recovery Coach, and Injury Manager. The backend stores
-            runner profiles, morning check-ins, coach chats, injury records, training
-            plans, subscription status, and daily usage events in SQLite for local
-            development.
-          </p>
-          <p>
-            Current public-launch work includes production environment templates,
-            account controls, email verification, password reset, data export, delete
-            account, rate limits, medical-safety boundaries, deployment files, EAS build
-            setup, RevenueCat billing scaffolding, and draft privacy, terms, and safety
-            documents.
-          </p>
-          <div class="meta">
-            <span class="pill">React Native</span>
-            <span class="pill">Express</span>
-            <span class="pill">SQLite</span>
-            <span class="pill">OpenAI API</span>
-            <span class="pill">RevenueCat Prep</span>
-            <span class="pill">Public Launch Prep</span>
-          </div>
-        </article>
+      <a class="project-card" href="projects/birdclef.html">
+        <div class="card-copy">
+          <p class="card-kicker">Competition machine learning</p>
+          <h2>Kaggle BirdCLEF</h2>
+          <p class="card-subtitle">Silver Medal in BirdCLEF+ 2026, placing 95th of 4094 teams.</p>
+          <p class="card-meta">Audio ML, Perch features, ensembling</p>
+          <span class="card-link">View project</span>
+        </div>
+        <img class="certificate" src="assets/birdclef-silver.png" alt="Kaggle BirdCLEF+ 2026 silver medal certificate">
+      </a>
 
-        <article class="card accent-gold">
-          <p class="project-kicker">Competition ML | Audio Classification</p>
-          <h3>Kaggle BirdCLEF</h3>
-          <p>
-            Earned a Silver Medal in BirdCLEF+ 2026, placing 95th out of 4094 teams.
-            The project focused on bird-sound classification using a packaged submission
-            workflow with shared Perch features, SED outputs, retrained branch artifacts,
-            sequence modeling, and rank blending.
-          </p>
-          <p>
-            The release package includes upload-ready Kaggle dataset assets, a submission
-            notebook, model artifacts, and documentation for reproducing the final
-            submission pipeline.
-          </p>
-          <img class="project-image" src="assets/birdclef-silver.png" alt="Kaggle BirdCLEF+ 2026 silver medal certificate">
-          <div class="meta">
-            <span class="pill">Silver Medal</span>
-            <span class="pill">Audio ML</span>
-            <span class="pill">Kaggle</span>
-            <span class="pill">Perch Features</span>
-            <span class="pill">Ensembling</span>
-          </div>
-        </article>
-
-        <article class="card accent-red">
-          <p class="project-kicker">Under Development | Wearable Sensors</p>
-          <h3>Running Fatigue Detection</h3>
-          <p>
-            Project under development through Pioneer. I am exploring whether wearable
-            sensors, including accelerometers and gyroscopes, can detect fatigue-related
-            gait changes by comparing a runner's motion against their own low-fatigue
-            baseline.
-          </p>
-          <p>
-            Planned features include cadence, trunk movement, stride length, body symmetry,
-            sensor placement, data filtering, and validation using public gait datasets
-            plus self-collected running data.
-          </p>
-          <div class="meta">
-            <span class="pill">Under Development</span>
-            <span class="pill">Wearable Sensors</span>
-            <span class="pill">IMU Data</span>
-            <span class="pill">Gait Analysis</span>
-            <span class="pill">Running Fatigue</span>
-          </div>
-        </article>
-      </div>
+      <a class="project-card" href="projects/running-fatigue.html">
+        <div class="card-copy">
+          <p class="card-kicker">Under development</p>
+          <h2>Running Fatigue Detection</h2>
+          <p class="card-subtitle">A Pioneer project studying fatigue-related gait changes with wearable sensors.</p>
+          <p class="card-meta">IMU data, gait analysis, personal baselines</p>
+          <span class="card-link">View project</span>
+        </div>
+        <img class="svg-visual" src="assets/running-fatigue-visual.svg" alt="Wearable sensor gait analysis visual">
+      </a>
     </section>
 
-    <section id="skills">
-      <div class="section-head">
-        <div>
-          <div class="section-number">03 Skills</div>
-          <h2>Academic information and skills.</h2>
-        </div>
-        <p class="section-summary">
-          Programming, machine learning, embedded systems, and sports-science interests
-          support the projects above.
-        </p>
+    <section class="mini-section wrap" id="about">
+      <div class="mini-panel">
+        <h2>About</h2>
+        <p>I am Paul Lyu, a student at Darlington School building practical systems that combine software, hardware, and athletic performance.</p>
       </div>
-      <div class="two-col">
-        <article class="card accent-green">
-          <p class="project-kicker">Academic Interests</p>
-          <h3>Building areas</h3>
-          <ul>
-            <li>Computer vision for sports performance analysis</li>
-            <li>Embedded AI and autonomous robotic systems</li>
-            <li>Machine learning for audio, gait, and sensor data</li>
-            <li>Running biomechanics and injury-prevention technology</li>
-          </ul>
-        </article>
-        <article class="card accent-gold">
-          <p class="project-kicker">Technical Skills</p>
-          <h3>Tools and programming</h3>
-          <ul>
-            <li>Programming languages: Python, Java, C++, Javascript</li>
-            <li>TypeScript, React Native, Express</li>
-            <li>OpenCV, MediaPipe, YOLO-style segmentation</li>
-            <li>Arduino, embedded control, serial communication</li>
-            <li>Machine learning workflows and Kaggle submissions</li>
-            <li>USACO Gold level programming</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-head">
-        <div>
-          <div class="section-number">04 Contact</div>
-          <h2>Get in touch.</h2>
-        </div>
-        <p class="section-summary">
-          Feel free to contact me about projects, research ideas, or collaboration.
-        </p>
-      </div>
-      <div class="section-card">
-        <p class="lede">Feel free to contact me.</p>
-        <div class="contact-links">
-          <span>Email: <a href="mailto:05wen0505@gmail.com">05wen0505@gmail.com</a></span>
-          <span>GitHub: <a href="https://github.com/paullyu1025-creator">paullyu1025-creator</a></span>
-        </div>
+      <div class="mini-panel" id="contact">
+        <h2>Contact</h2>
+        <p>Feel free to contact me.</p>
+        <p>Email: <a href="mailto:05wen0505@gmail.com">05wen0505@gmail.com</a><br>GitHub: <a href="https://github.com/paullyu1025-creator">paullyu1025-creator</a></p>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <span>&copy; 2026 Paul Lyu</span>
-    </div>
+    <div class="wrap">&copy; 2026 Paul Lyu</div>
   </footer>
 </body>
 </html>

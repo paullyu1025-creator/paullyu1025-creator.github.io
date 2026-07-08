@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Pacing Bot | Paul Lyu</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap nav" aria-label="Page navigation">
+      <a class="brand" href="../index.html">Paul Lyu</a>
+      <div class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="page-hero">
+      <h1>AI-Powered Autonomous Pacing Bot</h1>
+      <p>An embedded AI robot for visual pacing guidance and real-time running form feedback.</p>
+      <div class="actions">
+        <a class="button" href="https://github.com/paullyu1025-creator/ai-powered-pacing-bot">GitHub repository</a>
+        <a class="button secondary" href="../index.html#projects">Back to projects</a>
+      </div>
+      <div class="hero-media">
+        <img src="../assets/gsef-poster.png" alt="Pacing bot poster preview">
+      </div>
+    </section>
+
+    <section class="detail-grid">
+      <article class="detail-section">
+        <h2>What I built</h2>
+        <p>
+          I built an autonomous pacing robot that gives runners a visual pace reference
+          while also analyzing running posture in real time. The system combines a
+          three-wheel chassis, dual cameras, embedded AI inference, and motor control.
+        </p>
+        <p>
+          A front camera detects track lines for autonomous steering, while a side camera
+          captures running form for posture analysis and feedback.
+        </p>
+      </article>
+
+      <article class="detail-section">
+        <h2>Technical work</h2>
+        <ul>
+          <li>YOLO-style trackline segmentation for outdoor running tracks</li>
+          <li>MediaPipe pose estimation for running form analysis</li>
+          <li>RK3588 embedded platform for AI inference</li>
+          <li>Arduino Nano microcontrollers for servo and speed control</li>
+          <li>PID control and encoder feedback for speed stability</li>
+        </ul>
+      </article>
+
+      <article class="detail-section full">
+        <h2>Results</h2>
+        <div class="facts">
+          <div class="fact"><strong>Trackline recognition</strong><span>92.67% segmentation accuracy</span></div>
+          <div class="fact"><strong>Speed control</strong><span>1.96% average speed error</span></div>
+          <div class="fact"><strong>Running form analysis</strong><span>88.9% agreement with expert evaluation</span></div>
+          <div class="fact"><strong>Runtime</strong><span>About 40 FPS for the trackline pipeline</span></div>
+        </div>
+        <div class="repo-box">
+          Repository: <a href="https://github.com/paullyu1025-creator/ai-powered-pacing-bot">github.com/paullyu1025-creator/ai-powered-pacing-bot</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">&copy; 2026 Paul Lyu</div>
+  </footer>
+</body>
+</html>
